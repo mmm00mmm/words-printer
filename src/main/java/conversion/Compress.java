@@ -12,9 +12,18 @@ public class Compress {
     }
 
     public List<String> 各単語の中の連続する文字を1文字にする() {
-        return list; //TODO impl
-//        return list.stream()
-//                .filter(s -> s.matches("{2,}"))
-//                .collect(Collectors.toList());
+        for (int i = 0; i < list.size(); i++) {
+            String newWord = "";
+            List<String> wordList = Arrays.asList(list.get(i).split(""));
+
+            for (int j = wordList.size() - 1; 0 < j; j--) {
+                if (!wordList.get(j).equals(wordList.get(j - 1))) {
+                    newWord = wordList.get(j) + newWord;
+                }
+            }
+            newWord = wordList.get(0) + newWord;
+            list.set(i, newWord);
+        }
+        return list;
     }
 }
